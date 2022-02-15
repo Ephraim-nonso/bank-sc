@@ -71,7 +71,7 @@ contract ERC20Token is IERC20Metadata {
         _balances[msg.sender] = _balances[msg.sender].sub(amount);
         _balances[to] = _balances[to].add(amount);
         return true;
-        emit(msg.sender, to, amount);
+        emit Transfer(msg.sender, to, amount);
     }
 
     /**
