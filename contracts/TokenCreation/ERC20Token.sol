@@ -20,8 +20,9 @@ contract ERC20Token is IERC20Metadata {
         _name = name_;
         _symbol = symbol_;
         _decimals = decimals_;
-        _totalSupply = totalSupply_ ** decimals_;
+        _totalSupply = totalSupply_ * 10 ** decimals_;
         _balances[msg.sender] = _totalSupply;
+        emit Transfer(address(0), msg.sender, totalSupply_);
     }
 
      /**
@@ -66,12 +67,22 @@ contract ERC20Token is IERC20Metadata {
      *
      * Emits a {Transfer} event.
      */
+
+     function _transfer(address _from, address _to, uint _amount) internal {
+        //  Check to prevent sending from and to the zero account
+        require(_from != address(0), "ERCToken: Can't send from zero account");
+        require(_to != address(0), "ERCToken: Can't to from zero account");
+        require(_amount <= _balances[_from], "Insufficient funds");
+        _balances[_from] = _balances[_from].sub(_amount);
+        _balances[_to] = _balances[_to].add(_amount);
+        emit Transfer(msg.sender, _to, _amount);
+     }
+
+
+
     function transfer(address to, uint256 amount) external returns (bool) {
-        require(amount <= _balances[msg.sender], "Insufficient funds");
-        _balances[msg.sender] = _balances[msg.sender].sub(amount);
-        _balances[to] = _balances[to].add(amount);
+        _transfer(msg.sender, to, amount);
         return true;
-        emit Transfer(msg.sender, to, amount);
     }
 
     /**
@@ -100,7 +111,9 @@ contract ERC20Token is IERC20Metadata {
      * Emits an {Approval} event.
      */
     function approve(address spender, uint256 amount) external returns (bool) {
-        
+        _allowed[msg.sender][spender] = amount;
+        emit Approval (msg.sender, spender, amount);
+        return true;
     }
 
     /**
@@ -116,10 +129,16 @@ contract ERC20Token is IERC20Metadata {
         address from,
         address to,
         uint256 amount
-    ) external returns (bool) {
-        _balances[msg.sender] = _balances[msg.sender].sub(amount);
-        _allowed[msg.sender][from] = _allowed[msg.sender][].add(amount);
+    ) external override returns (bool) {
+        uint256 currentBalance = _allowed[from][msg.sender];
+        require(amount <= _balances[from], "Insufficient funds");
+        require(amount <= currentBalance, "Insufficient funds");
+        _balances[from] = _balances[from].sub(amount);
+        currentBalance = currentBalance.sub(amount);
+        _transfer(from, to, amount);
+        emit Transfer(msg.sender, to, amount);
         return true;
+        
     }
 
     /**
