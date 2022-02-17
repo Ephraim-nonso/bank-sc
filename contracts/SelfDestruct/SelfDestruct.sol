@@ -14,6 +14,11 @@ contract Contract {
         owner.transfer(msg.value);
     }
 
+    /*
+    The function below has the ability to self destruct a contract.
+    This implies that the contract is destroyed; the power
+    of the selfdestruct opcode.
+     */
     function donate() public payable {
         // charity.transfer(address(this).balance);
         selfdestruct(charity);
