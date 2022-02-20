@@ -1,9 +1,9 @@
-//SPDX-License-Identifier: UNLINCENSED
+//SPDX-License-Identifier: UNLICENSED
 
-pragma solidity ^0.8.6;
+pragma solidity 0.8.6;
 
-contract Partnership {
-  
+contract PartnerShip {
+
     /*
      * @Audience.
      * This is a partnership contract that restricts double registration of partners and CEOS.
@@ -14,111 +14,69 @@ contract Partnership {
      unique worker id.
      * The worker can retrieve their profile through their worker id.
      */
-  
-    // Collection of state variables
-    // 
-    uint8 numOfApprovals;
-    uint8 id;
 
-    // The CEO's Address.
-    address CEO;
-
-    // The mapping variables
-    mapping(address => bool) public partners;
-    mapping(uint => Worker) private presentWorkers;
-    mapping(address => bool) private AllWorkers;
-    mapping(uint => Worker) private droppedWorkers;
-
-    // The structs variables
-    struct Worker {
-        uint workerId;
-        address workerAddress;
-        string department;
-        bool status;
-    }
-
-    // An array of the workers' profile.
-    Worker[] workers;
+     // Collection of state variables 
+    uint8 index;
+    enum Department {Technology, Marketing, Finance}
    
+    struct Worker {
+        uint8 Id;
+        Department departments;
+        address workerAddress;
+    }
 
-    // The constructor receives the collection of parters into the contract.
+    mapping(address => bool) public partners;
+    mapping(uint8 => Worker) private workers;
+
     constructor(address[] memory _partners) {
-        CEO = msg.sender;
-        partners[CEO] = true;
         for(uint8 i; i < _partners.length; i++) {
-        assert((partners[_partners[i]] == false));
-        partners[_partners[i]] = true;
+            assert(partners[_partners[i]] == false);
+            partners[_partners[i]] = true;
         }
     }
 
-    //This modifier ensures that decision involves the CEO and one of the reciognized partners,
-    // particulary to add and remove a worker.
-    modifier onlyCEOAndPartners(address _onePartner) {
-        require(CEO != _onePartner, "Provide another partner.");
-        require(partners[_onePartner] == true, "Provide a true partner.");
-        require(partners[msg.sender] == true, "You're not the CEO");
-        require(partners[CEO] == true, "You're not the CEO");
+    // function to add new worker, to be called by any worker.
+    function employWorker
+    (uint8 _index, 
+    Department _departments, 
+    address _workerAddress, address _testifierAddr) 
+    public onlyPartner(_testifierAddr) returns(Worker memory) {
+        require(_index != index, "There is already a worker with that id.");
+        require(_departments <= Department.Finance, "There are only 3 departments.");
+        require(_workerAddress != workers[index].workerAddress, "You cannot employ a worker with same address");
+        Worker storage worker = workers[_index];
+        worker.Id = _index;
+        worker.departments = _departments;
+        worker.workerAddress = _workerAddress;
+        index++;
+        return workers[_index];
+    }
+
+    /*Throws an error when it is not called by any of the partner */
+    modifier onlyPartner(address _testifierAddr) {
+        require(partners[msg.sender] == true, "You're not a partner");
+        require(partners[_testifierAddr] == true, "You're not a partner");
         _;
     }
 
-    //This modifier gives the partners the ability to call a function,
-    // particularly to check the existence of a worker.
-    modifier onlyCEO {
-        require(partners[CEO] == true, "You're not obliged to carry out this function.");
-        _;
+    /* The partners can remove workers using their index*/
+    function retrenchWorker(uint8 _workerIndex)  public {
+        require(_workerIndex == workers[_workerIndex].Id, "No such worker exist");
+        delete(workers[_workerIndex]);
     }
 
-
-    //The function that adds a new worker.
-    function addWorker(string memory _dept, address _workerAddress, address _onePartner) public onlyCEOAndPartners(_onePartner) returns(Worker memory) {
-        require(AllWorkers[_workerAddress] == false, "You've employed this worker before.");
-        require(AllWorkers[_workerAddress] == partners[_workerAddress], "Partners cannot be a worker");
-        id += 1;
-        Worker memory worker = Worker(id, _workerAddress, _dept, false);
-        worker.status = true;
-        presentWorkers[id] = worker;
-        AllWorkers[_workerAddress] = true;
-        workers.push(worker);
-        return presentWorkers[id]; 
-    }
-
-    // The internal function that helps get the status of an employed worker.
-    function checkPresentWorker(uint id_) internal view returns(bool) {
-        return presentWorkers[id_].status;
-    }
-
-    // The function removes with any of the partners
-    function removeWorker(uint _workerId, address _onePartner) external onlyCEOAndPartners(_onePartner) returns(bool) {
-        require(workers[_workerId].workerId != 0, "Student does not exist");
-        droppedWorkers[_workerId] = presentWorkers[_workerId];
-        delete presentWorkers[_workerId];
-        
-        uint indexToBeRemoved;
-        for(uint i; i < workers.length; i++) {
-            if(workers[i].workerId == _workerId) {
-                indexToBeRemoved = i;
-                break;
-            }
+    function showAllWorkers(uint8 _index) public view returns(Worker[] memory activeWorkers) {
+        require(_index <= index);
+        activeWorkers = new Worker[](_index);
+        for(uint8 i = 1; i < index; i++) {
+            activeWorkers[i] = workers[i];
         }
-        workers[indexToBeRemoved] = workers[workers.length -1];
-        workers.pop();
-        return true;
     }
 
-    function getworkerProfile(uint8 workerID) external view returns(Worker memory, bool) {
-        require(workerID != 0, "There is no worker with 0 id");
-        require(workerID  == presentWorkers[id].workerId, "There is no worker with that id");
-        return (presentWorkers[id], checkPresentWorker(workerID));
+    function retrieveData(uint8 _index) external view returns(Worker memory) {
+        require(_index != 0, "There is no worker with 0 id.");
+        require(_index == workers[_index].Id, "There is no worker with such id.");
+        return workers[_index];
     }
-
-    modifier onlyWorker(uint _workerID) {
-        require(CEO == msg.sender, "You're not the worker.");
-        _;
-    }
-
-    function retrieveAddress(uint8 _workerID) external view returns(address, string memory, uint) {
-        return (workers[_workerID].workerAddress, workers[_workerID].department, workers[_workerID].workerId);
-    }
-
 }
 
