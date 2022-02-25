@@ -9,7 +9,33 @@ contract City {
         string[] districtNames;
         uint[] zipCodes;
         string governor;
+        Villages v;
     }
+
+    struct CityWithout {
+        uint district;
+        string[] districtNames;
+        uint[] zipCodes;
+        string governor;
+    }
+
+    struct Villages {
+        uint village;
+        string towns;
+        mapping(address => uint) houses;
+        County oneCounty;
+    }
+
+    struct VillagesWithoutMapping {
+        uint village;
+        string towns;
+    }
+    struct County {
+        uint district;
+        string governor;
+        mapping(address => uint) cottages;
+    }
+
 
     mapping(string => City) cities;
 
@@ -34,5 +60,15 @@ contract City {
         for(uint i = 0; _cn.length; i++) {
             cOut_[i] = cities[_cn[i]];
         }
+    }
+
+    function getCottage(address cot, string memory _cn) external returns(uint c) {
+        c = City.cities[_cn].v.oneCounty.cottages[cot];
+    }
+
+    function getVillage(address _village, string memory _name) external returns(Village[] memory v) {
+        v.village = cities[_name].v.village;
+        v.towns = cities[_name].v.towns;
+        return v;
     }
 }

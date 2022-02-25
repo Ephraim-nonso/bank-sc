@@ -1,0 +1,209 @@
+{
+	"compiler": {
+		"version": "0.8.6+commit.11564f7e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_cn",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_p",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_c",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_gdp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_cR",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "addstate",
+						"type": "string"
+					}
+				],
+				"name": "addCountry",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_state",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_cn",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_governor",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_capital",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "_zipCodes",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_IGR",
+						"type": "uint256"
+					}
+				],
+				"name": "addState",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_cn",
+						"type": "string"
+					}
+				],
+				"name": "seeCountry",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "president",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "capital",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "GDP",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "countryRevenue",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct CountryDB.CountryWithoutStates",
+						"name": "c",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_st",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_c",
+						"type": "string"
+					}
+				],
+				"name": "seeState",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "governor",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "capital",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256[]",
+								"name": "zipCodes",
+								"type": "uint256[]"
+							},
+							{
+								"internalType": "uint256",
+								"name": "IGR",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct CountryDB.StateWithoutmapping",
+						"name": "s",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts\\CountryDB\\CountryDB.sol": "CountryDB"
+		},
+		"evmVersion": "berlin",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts\\CountryDB\\CountryDB.sol": {
+			"keccak256": "0xdb2a3a3a867ba313b3383d7125f67d40db47490da7807d2c7175d93fa0a1df07",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://25aacd5758d4d961f77b4d3d8af5ba86ea33e4e253c3cee70ce99217ed941b14",
+				"dweb:/ipfs/Qmdr3XAmQdvpGQETN3zUVzK4dYzR3GRLzpt3e3UC4uSUcY"
+			]
+		}
+	},
+	"version": 1
+}
