@@ -31,14 +31,47 @@
 						"internalType": "uint256",
 						"name": "_cR",
 						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "addstate",
-						"type": "string"
 					}
 				],
 				"name": "addCountry",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_cn",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_st",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_lg",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_chairman",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_Revenue",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string[]",
+						"name": "_markets",
+						"type": "string[]"
+					}
+				],
+				"name": "addLGA",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -95,6 +128,11 @@
 						"components": [
 							{
 								"internalType": "string",
+								"name": "countryName",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
 								"name": "president",
 								"type": "string"
 							},
@@ -126,6 +164,57 @@
 				"inputs": [
 					{
 						"internalType": "string",
+						"name": "_lg",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_st",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_cn",
+						"type": "string"
+					}
+				],
+				"name": "seeLGA",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "lgaName",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "Chairman",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "Revenue",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string[]",
+								"name": "markets",
+								"type": "string[]"
+							}
+						],
+						"internalType": "struct CountryDB.LGAWithoutMapping",
+						"name": "lg",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
 						"name": "_st",
 						"type": "string"
 					},
@@ -139,6 +228,11 @@
 				"outputs": [
 					{
 						"components": [
+							{
+								"internalType": "string",
+								"name": "stateName",
+								"type": "string"
+							},
 							{
 								"internalType": "string",
 								"name": "governor",
@@ -197,11 +291,11 @@
 	},
 	"sources": {
 		"contracts\\CountryDB\\CountryDB.sol": {
-			"keccak256": "0xdb2a3a3a867ba313b3383d7125f67d40db47490da7807d2c7175d93fa0a1df07",
+			"keccak256": "0xf565b40c65381198cff04081d3de54294bfe4c3378ba0795c09c90b691fe4b69",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://25aacd5758d4d961f77b4d3d8af5ba86ea33e4e253c3cee70ce99217ed941b14",
-				"dweb:/ipfs/Qmdr3XAmQdvpGQETN3zUVzK4dYzR3GRLzpt3e3UC4uSUcY"
+				"bzz-raw://cf3eee2c6fb518a2df3d098a68627c0dccc4f16ad2abd52ef901608d891f7e8d",
+				"dweb:/ipfs/QmVPwVpqjscpfHN2T9MFoqQVkzuMMu5s1AnaurFF3HTwoB"
 			]
 		}
 	},
