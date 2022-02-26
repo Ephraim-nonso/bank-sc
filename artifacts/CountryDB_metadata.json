@@ -117,6 +117,52 @@
 			{
 				"inputs": [
 					{
+						"internalType": "string[]",
+						"name": "_cn",
+						"type": "string[]"
+					}
+				],
+				"name": "seeAllCountries",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "countryName",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "president",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "capital",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "GDP",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "countryRevenue",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct CountryDB.CountryWithoutStates[]",
+						"name": "c",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "string",
 						"name": "_cn",
 						"type": "string"
@@ -291,11 +337,11 @@
 	},
 	"sources": {
 		"contracts\\CountryDB\\CountryDB.sol": {
-			"keccak256": "0xf565b40c65381198cff04081d3de54294bfe4c3378ba0795c09c90b691fe4b69",
+			"keccak256": "0x668cbbbff27b09c485d1b1e0efea57376022dac18858209b1a4b6adf0a0b0d6e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://cf3eee2c6fb518a2df3d098a68627c0dccc4f16ad2abd52ef901608d891f7e8d",
-				"dweb:/ipfs/QmVPwVpqjscpfHN2T9MFoqQVkzuMMu5s1AnaurFF3HTwoB"
+				"bzz-raw://f02870dcdee23a5d442d8693fa96fc71cbdf801b5092c929eeb85127571d9934",
+				"dweb:/ipfs/QmTQnmVwb1Pf3aX5zwmSif24tEjz85E8QyagWy3rApepSP"
 			]
 		}
 	},

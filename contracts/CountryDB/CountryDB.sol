@@ -141,6 +141,7 @@ contract CountryDB {
         s.IGR = state.IGR;
     }
 
+    //See a single LGA.
     function seeLGA(string calldata _lg,
     string calldata _st,
     string calldata _cn
@@ -152,4 +153,18 @@ contract CountryDB {
         lg.markets = lgReplica.markets;
     }
       
+    function seeAllCountries(string[] memory _cn) external
+     view returns(CountryWithoutStates[] memory c) {
+        c = new CountryWithoutStates[](_cn.length);
+        for(uint i = 0; i < _cn.length; i++) {
+        Country storage cii = countries[_cn[i]];
+            c[i].countryName= cii.countryName;
+            c[i].president= cii.president;
+            c[i].capital= cii.capital;
+            c[i].GDP= cii.GDP;
+            c[i].countryRevenue= cii.countryRevenue;
+        }
+    }
 }
+
+//nigeria, ghana, kenya
