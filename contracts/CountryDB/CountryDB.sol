@@ -8,7 +8,8 @@ contract CountryDB {
         string[] elderStatemen;
         uint[] communityContribution;
         string[] availableSchools;
-    }
+        // mapping(string => uint) members;
+    }   
 
     struct LGA {
         string lgaName;
@@ -23,6 +24,7 @@ contract CountryDB {
         string Chairman;
         uint Revenue;
         string[] markets;
+        Village _villa;
     }
 
     struct State {
@@ -121,6 +123,21 @@ contract CountryDB {
         lga.markets = _markets;
     }
 
+    function addVillage(
+        string calldata _cn,
+        string calldata _st,
+        string calldata _lg,
+        string calldata _v,
+        string[] memory _elders,
+        uint[] memory _cmc,
+        string[] memory _ass
+    ) external {
+       Village storage vi = countries[_cn].states[_st].LGAs[_lg].villages[_v];
+       vi.elderStatemen = _elders;
+       vi.communityContribution = _cmc;
+       vi.availableSchools = _ass; 
+    }
+
     //see a single country.
     function seeCountry(string calldata _cn) external view returns(CountryWithoutStates memory c) {
         Country storage singleCountry = countries[_cn];
@@ -152,7 +169,7 @@ contract CountryDB {
         lg.Revenue = lgReplica.Revenue;
         lg.markets = lgReplica.markets;
     }
-      
+    
     function seeAllCountries(string[] memory _cn) external
      view returns(CountryWithoutStates[] memory c) {
         c = new CountryWithoutStates[](_cn.length);
@@ -165,6 +182,19 @@ contract CountryDB {
             c[i].countryRevenue= cii.countryRevenue;
         }
     }
-}
 
-//nigeria, ghana, kenya
+    function seeAllStatesInCountry(
+        string memory _cn,
+        string[] memory _st
+    ) external view returns(StateWithoutmapping[] memory st) {
+        st = new StateWithoutmapping[](_st.length);
+        for(uint i = 0; i < _st.length; i++) {
+            State storage _ostate = countries[_cn].states[_st[i]];
+            st[i].stateName = _ostate.stateName;
+            st[i].governor = _ostate.governor;
+            st[i].capital = _ostate.capital;
+            st[i].zipCodes = _ostate.zipCodes;
+            st[i].IGR = _ostate.IGR;
+        }
+    }
+}

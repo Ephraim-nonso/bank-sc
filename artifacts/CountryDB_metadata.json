@@ -117,6 +117,49 @@
 			{
 				"inputs": [
 					{
+						"internalType": "string",
+						"name": "_cn",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_st",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_lg",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_v",
+						"type": "string"
+					},
+					{
+						"internalType": "string[]",
+						"name": "_elders",
+						"type": "string[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "_cmc",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "string[]",
+						"name": "_ass",
+						"type": "string[]"
+					}
+				],
+				"name": "addVillage",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "string[]",
 						"name": "_cn",
 						"type": "string[]"
@@ -154,6 +197,57 @@
 						],
 						"internalType": "struct CountryDB.CountryWithoutStates[]",
 						"name": "c",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_cn",
+						"type": "string"
+					},
+					{
+						"internalType": "string[]",
+						"name": "_st",
+						"type": "string[]"
+					}
+				],
+				"name": "seeAllStatesInCountry",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "stateName",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "governor",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "capital",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256[]",
+								"name": "zipCodes",
+								"type": "uint256[]"
+							},
+							{
+								"internalType": "uint256",
+								"name": "IGR",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct CountryDB.StateWithoutmapping[]",
+						"name": "st",
 						"type": "tuple[]"
 					}
 				],
@@ -337,11 +431,11 @@
 	},
 	"sources": {
 		"contracts\\CountryDB\\CountryDB.sol": {
-			"keccak256": "0x668cbbbff27b09c485d1b1e0efea57376022dac18858209b1a4b6adf0a0b0d6e",
+			"keccak256": "0xea3d6585199e6773723f863dddc3e443a8049d9c1e9093018355c4fe876363fe",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://f02870dcdee23a5d442d8693fa96fc71cbdf801b5092c929eeb85127571d9934",
-				"dweb:/ipfs/QmTQnmVwb1Pf3aX5zwmSif24tEjz85E8QyagWy3rApepSP"
+				"bzz-raw://a80a9459cd434cd1bc777a5bd52d280e02acbf97b09ea9b7fa0d2a1c7ab63529",
+				"dweb:/ipfs/Qmb5mkQ1ftBZxvZNVhbScLMfVmLMapa3zFFHCvDALG8dcu"
 			]
 		}
 	},

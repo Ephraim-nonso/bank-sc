@@ -1,0 +1,166 @@
+{
+	"compiler": {
+		"version": "0.8.6+commit.11564f7e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string[]",
+						"name": "_size",
+						"type": "string[]"
+					},
+					{
+						"internalType": "string",
+						"name": "position",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_qty",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "_customer",
+						"type": "string"
+					}
+				],
+				"name": "addGoods",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_position",
+						"type": "string"
+					}
+				],
+				"name": "checkProduct",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "amount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string[]",
+								"name": "sizes",
+								"type": "string[]"
+							},
+							{
+								"components": [
+									{
+										"internalType": "string",
+										"name": "__name",
+										"type": "string"
+									},
+									{
+										"internalType": "uint256",
+										"name": "qty",
+										"type": "uint256"
+									}
+								],
+								"internalType": "struct goodsExistence.DemandWithoutMapping",
+								"name": "cust",
+								"type": "tuple"
+							}
+						],
+						"internalType": "struct goodsExistence.structWithoutMApping",
+						"name": "SWM",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_position",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_id",
+						"type": "uint256"
+					}
+				],
+				"name": "getCustomersAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts\\NEW.sol": "goodsExistence"
+		},
+		"evmVersion": "berlin",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts\\NEW.sol": {
+			"keccak256": "0x9a0e286fa2ac3a5ac10d0375bdf609bac40f3b19ccf2aaed5b9886d3478df505",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://b3a283fd3cd22f6d8c6b064b1a8f908de4694d6d384446074662f97639f9cf46",
+				"dweb:/ipfs/QmeTWu1JxifEJr4LEz5z99meqt8fCLmuMy4zcLem3ssHY6"
+			]
+		}
+	},
+	"version": 1
+}
