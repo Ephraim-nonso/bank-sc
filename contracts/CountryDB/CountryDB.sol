@@ -3,12 +3,10 @@
 pragma solidity 0.8.6;
 
 contract CountryDB {
-
     struct Village {
         string[] elderStatemen;
         uint[] communityContribution;
         string[] availableSchools;
-        // mapping(string => uint) members;
     }   
 
     struct LGA {
@@ -90,6 +88,12 @@ contract CountryDB {
         c.capital = _c;
         c.GDP = _gdp;
         c.countryRevenue = _cR;
+
+
+
+        //
+        // Country storage c = countries[_cn];
+        // State storage state = c.states[_state];
     }
 
     function addState(
